@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xgit.starter.dao.RoleDao">
+
+    <resultMap id="BaseResultMap" type="com.xgit.starter.entities.Role">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <id column="note" property="note" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--if元素-->
+    <select id="findRolesByName" parameterType="string" resultMap="BaseResultMap">
+        select id, role_name, note from t_role
+        <where>
+            <if test = "roleName != null and roleName != ''">
+                and role_name like concat('%', #{roleName}, '%')
+            </if>
+            <if test = "note != null and note != ''">
+                and note like concat('%', #{note}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--choose/when/otherwise元素-->
+    <select id="findRoles" parameterType="role" resultMap="BaseResultMap">
+        select id, role_name, note from t_role where 1=1
+        <choose>
+            <when test="id != null and id != ''">
+                and id = #{id}
+            </when>
+
+            <when test = "roleName != null and roleName != ''">
+                and role_name like concat('%', #{roleName}, '%')
+            </when>
+            <otherwise>
+                and note is not null
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

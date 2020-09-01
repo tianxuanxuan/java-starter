@@ -6,6 +6,7 @@ import com.xgit.stater.observer.ProductList;
 import com.xgit.stater.observer.TaobaoObserver;
 import org.testng.annotations.Test;
 
+
 /**
  * Created by tianxuanxuan
  * On 2020-08-28 09:40
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 
 public class TestProxy {
+
     @Test
     public void testJdkProxy() {
         //真实对象
