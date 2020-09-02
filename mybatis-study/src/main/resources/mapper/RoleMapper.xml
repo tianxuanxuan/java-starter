@@ -3,7 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xgit.starter.dao.RoleDao">
-
+    <sql id="Base_Column_List" >
+        id, role_name, note
+    </sql>
     <resultMap id="BaseResultMap" type="com.xgit.starter.entities.Role">
         <id column="id" property="id" jdbcType="BIGINT" />
         <id column="role_name" property="roleName" jdbcType="VARCHAR"/>
@@ -63,5 +65,11 @@
         <foreach item="idNo" index="index" collection="ids" open="(" separator="," close=")">
             #{idNo}
         </foreach>
+    </select>
+    
+    <select id="findRoleByPage" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from t_role
     </select>
 </mapper>

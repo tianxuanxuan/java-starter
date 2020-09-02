@@ -1,6 +1,8 @@
 package com.xgit.starter.controller;
 
 import com.xgit.starter.entities.CommonResult;
+import com.xgit.starter.entities.PageRequest;
+import com.xgit.starter.entities.PageResult;
 import com.xgit.starter.entities.Role;
 import com.xgit.starter.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -95,6 +97,18 @@ public class RoleController {
         List<Role> results = roleService.findRoleByIds(ids);
         log.info("****查询结果:" + results);
         if (results != null && results.size() > 0){
+            return new CommonResult<>(200, "查询数据成功", results);
+        }else {
+            return new CommonResult<>(444, "查询数据失败");
+        }
+    }
+
+    @PostMapping(value = "/role/findByPage")
+    public CommonResult<PageResult> findRoleByPage(@RequestBody PageRequest request){
+        log.info("****查询参数:" + request);
+        PageResult results = roleService.findRoleByPage(request);
+        log.info("****查询结果:" + results);
+        if (results != null){
             return new CommonResult<>(200, "查询数据成功", results);
         }else {
             return new CommonResult<>(444, "查询数据失败");

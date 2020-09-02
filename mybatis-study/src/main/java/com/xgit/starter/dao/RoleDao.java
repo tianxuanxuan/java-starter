@@ -20,4 +20,6 @@ public interface RoleDao {
     public int updateRole(Role role);
 
     public List<Role> findRoleByIds(@Param("ids") List<Long> ids);
+
+    public List<Role> findRoleByPage();
 }

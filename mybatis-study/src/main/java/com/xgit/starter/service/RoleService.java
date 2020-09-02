@@ -1,5 +1,7 @@
 package com.xgit.starter.service;
 
+import com.xgit.starter.entities.PageRequest;
+import com.xgit.starter.entities.PageResult;
 import com.xgit.starter.entities.Role;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,4 +16,5 @@ public interface RoleService {
     public List<Role> findRoles(Role role);
     public int updateRole(Role role);
     public List<Role> findRoleByIds(List<Long> ids);
+    public PageResult findRoleByPage(PageRequest pageRequest);
 }
