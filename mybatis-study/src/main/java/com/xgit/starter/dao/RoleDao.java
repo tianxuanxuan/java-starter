@@ -16,4 +16,8 @@ public interface RoleDao {
     public List<Role> findRolesByName(@Param("roleName") String name,
                                       @Param("note") String note);
     public List<Role> findRoles(Role role);
+
+    public int updateRole(Role role);
+
+    public List<Role> findRoleByIds(@Param("ids") List<Long> ids);
 }
