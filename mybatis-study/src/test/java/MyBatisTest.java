@@ -1,6 +1,7 @@
 import com.xgit.starter.MyBatisStudyApplication;
 import com.xgit.starter.dao.RoleDao;
 import com.xgit.starter.entities.Role;
+import com.xgit.starter.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,9 @@ import java.util.List;
 public class MyBatisTest {
     @Autowired
     private RoleDao roleDao;
+
+    @Autowired
+    private RoleService roleService;
 
 
     /**
@@ -56,5 +60,19 @@ public class MyBatisTest {
         log.info("二级缓存查询2");
         List<Role> result2 = roleDao.findRolesByName("总经理","");
         log.info("二级缓存查询结果2" + result2);
+    }
+
+    /**
+     * 测试事务
+     */
+    @Test
+    public void testTransactional(){
+        Role updateRole = new Role();
+        updateRole.setId(9L);
+        updateRole.setNote("销售更新");
+        Role insertRole = new Role();
+        insertRole.setRoleName("事务");
+        insertRole.setNote("spring 事务");
+        roleService.testTransactional(updateRole, insertRole);
     }
 }

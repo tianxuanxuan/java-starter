@@ -46,6 +46,20 @@ public class RoleServiceImpl implements RoleService {
         return PageUtils.getPageResult(getPageInfo(pageRequest));
     }
 
+    @Override
+    public void testTransactional(Role updateRole, Role insetRole) {
+       /*
+        //事务测试
+        roleDao.insert(insetRole);
+        int result = 10/0;
+        roleDao.updateRole(updateRole);
+        */
+
+        //事务传播机制测试
+        roleDao.insert(insetRole);
+        this.updateRole(updateRole);
+    }
+
     private PageInfo<Role> getPageInfo(PageRequest pageRequest){
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();

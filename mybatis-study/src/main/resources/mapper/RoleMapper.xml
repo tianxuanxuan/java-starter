@@ -66,10 +66,15 @@
             #{idNo}
         </foreach>
     </select>
-    
+
     <select id="findRoleByPage" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List" />
         from t_role
     </select>
+
+    <insert id="insert" parameterType="role">
+        insert into t_role (role_name, note)
+        value (#{roleName}, #{note})
+    </insert>
 </mapper>

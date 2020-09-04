@@ -22,4 +22,6 @@ public interface RoleDao {
     public List<Role> findRoleByIds(@Param("ids") List<Long> ids);
 
     public List<Role> findRoleByPage();
+
+    public int insert(Role role);
 }

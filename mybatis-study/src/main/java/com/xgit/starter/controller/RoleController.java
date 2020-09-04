@@ -1,6 +1,7 @@
 package com.xgit.starter.controller;
 
-import com.xgit.starter.entities.CommonResult;
+import com.xgit.starter.commons.CommonEnum;
+import com.xgit.starter.commons.CommonResult;
 import com.xgit.starter.entities.PageRequest;
 import com.xgit.starter.entities.PageResult;
 import com.xgit.starter.entities.Role;
@@ -31,14 +32,14 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/getByName/{name}/{note}")
-    public CommonResult<List<Role>> getRolesByName(@PathVariable(value = "name", required = false) String name,
+    public CommonResult getRolesByName(@PathVariable(value = "name", required = false) String name,
                                                    @PathVariable(value = "note", required = false) String note){
         List<Role> results =  roleService.findRolesByName(name, note);
         log.info("****查询结果:" + results);
         if (results != null && results.size() > 0){
-            return new CommonResult<>(200, "查询数据成功", results);
+            return CommonResult.success(results);
         }else {
-            return new CommonResult<>(444, "查询失败，没有对应记录 name: " + name);
+            return CommonResult.error(CommonEnum.NOT_FOUND);
         }
     }
 
@@ -51,16 +52,18 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/getByName1")
-    public CommonResult<List<Role>> getRolesByName1(@RequestParam(value = "name", required = false)
+    public CommonResult getRolesByName1(@RequestParam(value = "name", required = false)
                                                             String name,
                                                     @RequestParam(value = "note", required = false)
                                                                 String note){
         List<Role> results =  roleService.findRolesByName(name, note);
         log.info("****查询结果:" + results);
         if (results != null && results.size() > 0){
-            return new CommonResult<>(200, "查询数据成功", results);
+            return CommonResult.success(results);
+            //return new CommonResult<>(200, "查询数据成功", results);
         }else {
-            return new CommonResult<>(444, "查询失败，没有对应记录 name: " + name);
+            return CommonResult.error(CommonEnum.NOT_FOUND);
+            //return new CommonResult<>(444, "查询失败，没有对应记录 name: " + name);
         }
     }
 
@@ -70,48 +73,48 @@ public class RoleController {
      * @return
      */
     @PostMapping(value = "/role/get")
-    public CommonResult<List<Role>> getRoles(Role role){
+    public CommonResult getRoles(Role role){
         log.info("****查询参数:" + role);
         List<Role> results =  roleService.findRoles(role);
         log.info("****查询结果:" + results);
         if (results != null && results.size() > 0){
-            return new CommonResult<>(200, "查询数据成功", results);
+            return CommonResult.success(results);
         }else {
-            return new CommonResult<>(444, "查询失败，没有对应记录");
+            return CommonResult.error(CommonEnum.NOT_FOUND);
         }
     }
 
     @PostMapping(value = "/role/update")
-    public CommonResult<Integer> updateRole(Role role){
+    public CommonResult updateRole(Role role){
         int result = roleService.updateRole(role);
         if (result > 0){
-            return new CommonResult<>(200, "更新数据成功", result);
+            return CommonResult.success(null);
         }else {
-            return new CommonResult<>(444, "更新数据失败", result);
+            return CommonResult.error(CommonEnum.NOT_FOUND);
         }
     }
 
     @GetMapping(value = "/role/findByIds")
-    public CommonResult<List<Role>> findRoleByIds(@RequestParam List<Long> ids){
+    public CommonResult findRoleByIds(@RequestParam List<Long> ids){
         log.info("****查询参数:" + ids);
         List<Role> results = roleService.findRoleByIds(ids);
         log.info("****查询结果:" + results);
         if (results != null && results.size() > 0){
-            return new CommonResult<>(200, "查询数据成功", results);
+            return CommonResult.success(results);
         }else {
-            return new CommonResult<>(444, "查询数据失败");
+            return CommonResult.error(CommonEnum.NOT_FOUND);
         }
     }
 
     @PostMapping(value = "/role/findByPage")
-    public CommonResult<PageResult> findRoleByPage(@RequestBody PageRequest request){
+    public CommonResult findRoleByPage(@RequestBody PageRequest request){
         log.info("****查询参数:" + request);
         PageResult results = roleService.findRoleByPage(request);
         log.info("****查询结果:" + results);
         if (results != null){
-            return new CommonResult<>(200, "查询数据成功", results);
+            return CommonResult.success(results);
         }else {
-            return new CommonResult<>(444, "查询数据失败");
+            return CommonResult.error(CommonEnum.NOT_FOUND);
         }
     }
 }
