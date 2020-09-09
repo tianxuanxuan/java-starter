@@ -32,6 +32,7 @@
         <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
         <hutool-all.version>5.1.0</hutool-all.version>
         <test.version>6.9.13.5</test.version>
+        <fastjson.version>1.2.41</fastjson.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -103,6 +104,20 @@
                 <artifactId>testng</artifactId>
                 <version>${test.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <!--redis-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
+            <!--fastjson 相关jar -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

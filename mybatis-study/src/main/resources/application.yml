@@ -14,6 +14,17 @@ spring:
     username: root
     password: 123456
 
+  #redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 10
+        max-wait: 100000
+
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   #要操作的entities所在包
@@ -25,3 +36,4 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+

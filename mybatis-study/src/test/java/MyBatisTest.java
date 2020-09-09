@@ -1,6 +1,7 @@
 import com.xgit.starter.MyBatisStudyApplication;
 import com.xgit.starter.dao.RoleDao;
 import com.xgit.starter.entities.Role;
+import com.xgit.starter.service.RedisService;
 import com.xgit.starter.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -26,6 +27,9 @@ public class MyBatisTest {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private RedisService redisService;
 
 
     /**
@@ -74,5 +78,20 @@ public class MyBatisTest {
         insertRole.setRoleName("事务");
         insertRole.setNote("spring 事务");
         roleService.testTransactional(updateRole, insertRole);
+    }
+
+    /**
+     * 测试redis
+     */
+    @Test
+    public void testRedis(){
+        Role role = new Role();
+        role.setId(101L);
+        role.setRoleName("保安");
+        role.setNote("安全工作更新");
+        //System.out.println("保存结果" + redisService.addRole(role));
+        //System.out.println("查询结果" + redisService.findRoleById(101L));
+        //System.out.println("更新结果" + redisService.updateRole(role));
+        System.out.println("删除结果" + redisService.deleteRole(100L));
     }
 }
