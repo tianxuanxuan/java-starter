@@ -51,6 +51,16 @@ public class MyBatisTest {
         log.info("二级缓存查询结果" + result2);
     }
 
+    @Test
+    public void testUpdate(){
+        //先更新db
+        Role role = new Role();
+        role.setId(1L);
+        role.setRoleName("总经理");
+        role.setNote("管理职务更新5");
+        System.out.println("更新结果：" + roleDao.updateRole(role));
+    }
+
     /**
      * 测试二级缓存效果
      * 需要*Mapper.xml开启二级缓存

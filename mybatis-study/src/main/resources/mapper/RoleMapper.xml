@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xgit.starter.dao.RoleDao">
+    <cache type="com.xgit.starter.utils.MybatisRedisCache"></cache>
     <sql id="Base_Column_List" >
         id, role_name, note
     </sql>
@@ -13,7 +14,7 @@
     </resultMap>
 
     <!--if/bind元素-->
-    <select id="findRolesByName" parameterType="string" resultMap="BaseResultMap">
+    <select id="findRolesByName" parameterType="string" resultMap="BaseResultMap" useCache="true">
         select id, role_name, note from t_role
         <where>
             <if test = "roleName != null and roleName != ''">

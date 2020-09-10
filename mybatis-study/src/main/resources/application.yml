@@ -29,6 +29,8 @@ mybatis:
   mapper-locations: classpath*:mapper/*.xml
   #要操作的entities所在包
   type-aliases-package: com.xgit.starter.entities
+  configuration:
+    cache-enabled: true
 
 #mybatis 分页插件
 pagehelper:

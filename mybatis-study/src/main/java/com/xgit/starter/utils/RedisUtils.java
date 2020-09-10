@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tianxuanxuan
@@ -17,7 +18,7 @@ public class RedisUtils {
 
     public boolean set(String key, Object value){
         try{
-            redisTemplate.opsForValue().set(key, value);
+            redisTemplate.opsForValue().set(key, value,30, TimeUnit.SECONDS);
         }catch (Exception e){
             return false;
         }
