@@ -35,13 +35,14 @@ public class MybatisRedisCache implements Cache {
     public void putObject(Object key, Object value) {
         getRedisTemplate().boundHashOps(getId()).put(key, value);
         //设置缓存失效时间，保证数据一致性, 能不能设置key的过期时间而不是id
-        getRedisTemplate().expire(getId(), 10, TimeUnit.SECONDS);
+        getRedisTemplate().expire(getId(), 1000, TimeUnit.SECONDS);
         log.info("[结果放入到缓存中: " + key + "=" + value+" ]");
     }
 
     @Override
     public Object getObject(Object key) {
         Object value = getRedisTemplate().boundHashOps(getId()).get(key);
+        log.info("id是：" + getId());
         log.info("[从缓存中获取了: " + key + "=" + value+" ]");
         return value;
     }

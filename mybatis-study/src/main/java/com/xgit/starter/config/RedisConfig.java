@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
@@ -32,6 +34,15 @@ public class RedisConfig {
     @Bean
     public RedisTemplate<?, ?> getRedisTemplate() {
         JedisConnectionFactory factory = getConnectionFactory();
-        return new StringRedisTemplate(factory);
+        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(factory);
+        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+        @SuppressWarnings({"rawtypes", "unchecked"})
+        Jackson2JsonRedisSerializer jsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        redisTemplate.setKeySerializer(redisSerializer);
+        redisTemplate.setHashKeySerializer(jsonRedisSerializer);
+        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
+        redisTemplate.setEnableTransactionSupport(true);
+        return redisTemplate;
     }
 }

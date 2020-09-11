@@ -3,6 +3,8 @@ package com.xgit.starter.service.impl;
 import com.xgit.starter.dao.RoleRedisDao;
 import com.xgit.starter.entities.Role;
 import com.xgit.starter.service.RedisService;
+import com.xgit.starter.utils.Constant;
+import com.xgit.starter.utils.RedisLock;
 import com.xgit.starter.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

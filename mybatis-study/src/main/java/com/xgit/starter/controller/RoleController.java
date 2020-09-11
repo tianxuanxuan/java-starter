@@ -6,6 +6,8 @@ import com.xgit.starter.entities.PageRequest;
 import com.xgit.starter.entities.PageResult;
 import com.xgit.starter.entities.Role;
 import com.xgit.starter.service.RoleService;
+import com.xgit.starter.utils.Constant;
+import com.xgit.starter.utils.RedisLock;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,12 @@ import java.util.List;
 @RestController
 @Slf4j
 public class RoleController {
+
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private RedisLock redisLock;
 
 
     /**
@@ -115,6 +121,17 @@ public class RoleController {
             return CommonResult.success(results);
         }else {
             return CommonResult.error(CommonEnum.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value = "/role/lock")
+    public CommonResult distributeLock(@RequestParam(value = "taskId", required = false)
+                                              String taskId) {
+        boolean lock = redisLock.lock(taskId, Constant.REDIS_EXPIRE_TIME);
+        if (lock){
+            return CommonResult.success("-----抢到锁，执行任务......");
+        }else {
+            return CommonResult.success("-----没有获得锁，请稍后重试-----");
         }
     }
 }

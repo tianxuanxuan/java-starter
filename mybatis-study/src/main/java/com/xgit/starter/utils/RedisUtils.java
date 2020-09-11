@@ -18,11 +18,11 @@ public class RedisUtils {
 
     public boolean set(String key, Object value){
         try{
-            redisTemplate.opsForValue().set(key, value,30, TimeUnit.SECONDS);
+            Boolean result = redisTemplate.opsForValue().setIfAbsent(key, value,300, TimeUnit.SECONDS);
+            return result != null && result;
         }catch (Exception e){
             return false;
         }
-        return true;
     }
 
 

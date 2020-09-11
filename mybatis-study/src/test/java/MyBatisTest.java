@@ -57,7 +57,7 @@ public class MyBatisTest {
         Role role = new Role();
         role.setId(1L);
         role.setRoleName("总经理");
-        role.setNote("管理职务更新5");
+        role.setNote("管理职务更新7");
         System.out.println("更新结果：" + roleDao.updateRole(role));
     }
 
@@ -96,12 +96,20 @@ public class MyBatisTest {
     @Test
     public void testRedis(){
         Role role = new Role();
-        role.setId(101L);
+        role.setId(106L);
         role.setRoleName("保安");
         role.setNote("安全工作更新");
-        //System.out.println("保存结果" + redisService.addRole(role));
+        System.out.println("保存结果" + redisService.addRole(role));
         //System.out.println("查询结果" + redisService.findRoleById(101L));
         //System.out.println("更新结果" + redisService.updateRole(role));
-        System.out.println("删除结果" + redisService.deleteRole(100L));
+        //System.out.println("删除结果" + redisService.deleteRole(101L));
+    }
+
+    @Test
+    public void testBoolean(){
+        Boolean b = new Boolean("true");
+        if (b != null && b.equals(true)){
+            System.out.println("正确");
+        }
     }
 }
