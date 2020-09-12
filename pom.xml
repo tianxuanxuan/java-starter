@@ -12,6 +12,7 @@
         <module>design-pattern-study</module>
         <module>annotation-study</module>
         <module>mybatis-study</module>
+        <module>mybatis-plus-study</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
