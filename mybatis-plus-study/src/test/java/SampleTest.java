@@ -21,24 +21,24 @@ import java.util.List;
 @SpringBootTest(classes = MybatisPlusMain8082.class)
 public class SampleTest {
 
-    @Autowired
-    private RoleMapper userMapper;
+//    @Autowired
+//    private RoleMapper userMapper;
 
     @Autowired
-    private RoleServiceImpl roleService;
+    private RoleService roleService;
 
-    @Test
-    public void testSelect() {
-        System.out.println(("----- selectAll method test ------"));
-        List<Role> userList = userMapper.selectList(null);
-        System.out.println(userList);
-    }
+//    @Test
+//    public void testSelect() {
+//        System.out.println(("----- selectAll method test ------"));
+//        List<Role> userList = userMapper.selectList(null);
+//        System.out.println(userList);
+//    }
 
     @Test
     public void testSelectService(){
         System.out.println(("----- selectAll method test ------"));
-        //Role user = roleService.getOne(Wrappers.<Role>lambdaQuery().eq(Role::getId,"Alice"),false);
-        //System.out.println(user);
+        Role user = roleService.getOne(Wrappers.<Role>lambdaQuery().eq(Role::getId,"Alice"),false);
+        System.out.println(user);
         List<Role> userList = roleService.list();
         System.out.println(userList);
     }

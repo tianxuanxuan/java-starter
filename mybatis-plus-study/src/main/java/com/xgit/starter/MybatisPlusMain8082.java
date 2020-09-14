@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * On 2020-09-12 17:39
  */
 @SpringBootApplication
-@MapperScan("com.xgit")
+@MapperScan("com.xgit.starter.**.mapper")
 public class MybatisPlusMain8082 {
     public static void main(String[] args) {
         SpringApplication.run(MybatisPlusMain8082.class, args);

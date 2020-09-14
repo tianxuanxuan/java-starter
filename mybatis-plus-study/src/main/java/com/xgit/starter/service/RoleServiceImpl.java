@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
  * On 2020-09-12 20:31
  */
 
-@Service
+@Service("")
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService{
 }
