@@ -7,6 +7,7 @@ import com.xgit.starter.entities.PageResult;
 import com.xgit.starter.entities.Role;
 import com.xgit.starter.service.RoleService;
 import com.xgit.starter.utils.Constant;
+import com.xgit.starter.utils.Function;
 import com.xgit.starter.utils.RedisLock;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/getByName1")
+    @Function("role.getByName1")
     public CommonResult getRolesByName1(@RequestParam(value = "name", required = false)
                                                             String name,
                                                     @RequestParam(value = "note", required = false)

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * Created by tianxuanxuan
@@ -14,10 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 全局异常捕获
  */
 
-@ControllerAdvice
+@RestControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
-
+class GlobalExceptionHandler {
     /**
      * 处理业务异常
      */
