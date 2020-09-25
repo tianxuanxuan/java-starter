@@ -13,6 +13,7 @@
         <module>annotation-study</module>
         <module>mybatis-study</module>
         <module>mybatis-plus-study</module>
+        <module>spring-all-study</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
