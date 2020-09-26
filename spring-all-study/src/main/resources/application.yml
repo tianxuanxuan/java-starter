@@ -8,3 +8,8 @@ spring:
     host: 127.0.0.1
     port: 6379
     database: 2
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .jsp

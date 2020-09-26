@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class SpringAllStudyMain3000 {
+public class SpringAllStudyMain3001 {
     public static void main(String[] args) {
-        SpringApplication.run(SpringAllStudyMain3000.class, args);
+        SpringApplication.run(SpringAllStudyMain3001.class, args);
     }
 }
