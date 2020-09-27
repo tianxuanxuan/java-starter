@@ -13,3 +13,12 @@ spring:
     view:
       prefix: /WEB-INF/views
       suffix: .jsp
+
+  datasource:
+    # 当前数据源操作类型
+    #type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user_db?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
