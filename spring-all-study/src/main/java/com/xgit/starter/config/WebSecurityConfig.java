@@ -4,6 +4,7 @@ import io.swagger.models.auth.In;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,6 +23,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
  */
 
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //定义用户信息 查询用户信息
     /*@Bean
@@ -49,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/r/r1").hasAnyAuthority("p1")
-                .antMatchers("/r/r2").hasAnyAuthority("p2")
+                /*.antMatchers("/r/r1").hasAnyAuthority("p1")
+                .antMatchers("/r/r2").hasAnyAuthority("p2")*/
                 .antMatchers("/r/**").authenticated() //拦截访问“/r/**”
                 .anyRequest().permitAll()//其他请求放行
                 .and().formLogin() //允许表单登录

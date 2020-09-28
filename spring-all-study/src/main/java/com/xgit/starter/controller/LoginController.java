@@ -1,5 +1,6 @@
 package com.xgit.starter.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,11 +20,13 @@ public class LoginController {
     }
 
     @GetMapping("/r/r1")
+    @PreAuthorize("hasAnyAuthority('p1')")
     public String r1(){
         return getUserName() + "访问资源r1";
     }
 
     @GetMapping("/r/r2")
+    @PreAuthorize("hasAnyAuthority('p2')")
     public String r2(){
         return getUserName() + "访问资源r2";
     }

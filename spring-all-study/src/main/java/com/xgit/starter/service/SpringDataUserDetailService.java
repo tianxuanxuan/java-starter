@@ -18,7 +18,7 @@ import java.util.List;
  * On 2020-09-27 09:06
  */
 @Service
-public class SpringDataUserDetialService implements UserDetailsService {
+public class SpringDataUserDetailService implements UserDetailsService {
     @Autowired
     private UserDao userDao;
     @Override
