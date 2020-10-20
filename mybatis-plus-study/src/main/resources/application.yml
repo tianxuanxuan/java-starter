@@ -13,7 +13,12 @@ spring:
     url: jdbc:mysql://localhost:3306/mybatis-study?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 123456
-
+logging:
+  level:
+    root: warn
+    com.xgit.starter.mapper: trace
+  pattern:
+    console: '%p%m%n'
 
 
 

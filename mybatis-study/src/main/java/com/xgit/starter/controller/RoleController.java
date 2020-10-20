@@ -7,10 +7,9 @@ import com.xgit.starter.entities.PageResult;
 import com.xgit.starter.entities.Role;
 import com.xgit.starter.service.RoleService;
 import com.xgit.starter.utils.Constant;
-import com.xgit.starter.utils.Function;
 import com.xgit.starter.utils.RedisLock;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,14 +20,12 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class RoleController {
 
-    @Autowired
-    private RoleService roleService;
+    private final RoleService roleService;
 
-    @Autowired
-    private RedisLock redisLock;
-
+    private final RedisLock redisLock;
 
     /**
      * @PathVariable注解用作get请求
@@ -59,7 +56,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/getByName1")
-    @Function("role.getByName1")
+    //@Function("role.getByName1")
     public CommonResult getRolesByName1(@RequestParam(value = "name", required = false)
                                                             String name,
                                                     @RequestParam(value = "note", required = false)

@@ -24,4 +24,6 @@ public interface RoleDao {
     public List<Role> findRoleByPage();
 
     public int insert(Role role);
+
+    public int insert();
 }
